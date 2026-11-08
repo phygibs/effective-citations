@@ -1,5 +1,7 @@
 # Effective Citations
 
+[Open the live calculator](https://effective-citations-lab.gbsg2025.chatgpt.site)
+
 A browser calculator for physics papers in the INSPIRE-HEP snapshot. Enter a title or an INSPIRE record ID to compare direct citations with effective citations at 0.5% or 1%. The page searches the live INSPIRE catalog and reads precomputed scores in the browser. Every score includes all eligible citation depths.
 
 ## Run locally
@@ -7,7 +9,8 @@ A browser calculator for physics papers in the INSPIRE-HEP snapshot. Enter a tit
 ```sh
 python -m pip install -r requirements.txt
 python effective_citations.py --rates 0.5 1
-cp -R web dist
+mkdir -p dist
+cp -R web/. dist/
 python build_browser_data.py inspire_scores.csv.gz dist/data
 python -m http.server 8000 --directory dist
 ```
