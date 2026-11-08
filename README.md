@@ -1,6 +1,6 @@
 # Effective Citations
 
-[Open the live calculator](https://effective-citations-lab.gbsg2025.chatgpt.site)
+[Open the live calculator](https://phygibs.github.io/effective-citations/)
 
 A browser calculator for physics papers in the INSPIRE-HEP snapshot. Enter a title or an INSPIRE record ID to compare direct citations with effective citations at 0.5% or 1%. The page searches the live INSPIRE catalog and reads precomputed scores in the browser. Every score includes all eligible citation depths.
 
