@@ -4,17 +4,15 @@
 import argparse
 import gzip
 import math
-import shutil
 import tempfile
 from pathlib import Path
-from urllib.request import urlopen
 from zipfile import ZipFile
 
 import numpy as np
 import pandas as pd
 from scipy.sparse import csr_matrix
 
-SNAPSHOT_URL = "https://networks.skewed.de/net/inspire_hep/files/citations.csv.zip"
+from snapshot import download_snapshot
 
 
 def date_bounds(dates):
@@ -105,23 +103,6 @@ def calculate_scores(graph, earliest, rates):
     if not np.isfinite(scores).all():
         raise ValueError("Scores overflowed. Try a smaller pass-back rate.")
     return direct, scores
-
-
-def download_snapshot(path):
-    print(f"Downloading the INSPIRE snapshot to {path}", flush=True)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with tempfile.NamedTemporaryFile(dir=path.parent, delete=False) as temporary:
-        partial = Path(temporary.name)
-    try:
-        with partial.open("wb") as target:
-            with urlopen(SNAPSHOT_URL, timeout=90) as response:
-                shutil.copyfileobj(response, target)
-        with ZipFile(partial) as archive:
-            if not {"nodes.csv", "edges.csv"}.issubset(archive.namelist()):
-                raise ValueError("The download is missing the citation graph files")
-        partial.replace(path)
-    finally:
-        partial.unlink(missing_ok=True)
 
 
 def write_scores(path, table):

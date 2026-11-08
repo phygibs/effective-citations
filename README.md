@@ -21,6 +21,8 @@ Open `http://localhost:8000`. The first run downloads the graph ZIP from [Netzsc
 
 Choose **Settings → Pages → Source → GitHub Actions**. The Pages workflow builds the static site and runs the scorer in GitHub Actions. It can also be run manually from the Actions tab. GitHub Pages eligibility depends on repository visibility and the account plan.
 
+GitHub checks the snapshot every Monday at 04:17 UTC. It downloads and scores a new archive only when its ETag differs from the live version. Pushes to `main` and manual runs rebuild the site. The calculator shows the archive date and the most recent successful check. GitHub may disable the weekly schedule after 60 days without repository activity.
+
 ## Scoring
 
 A direct citation earns one point. If B cites A, A also earns the selected fraction of B's effective score. Separate routes contribute independently, including routes through the same later paper. Each link counts once between a given pair of records. The scorer keeps a link when the citing record is clearly dated later and follows every eligible branch to its end.

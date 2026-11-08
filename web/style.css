@@ -58,6 +58,8 @@ form button:hover { background: #104b38; }
 .metrics .highlight { background: var(--tint); border-color: #a6c3aa; }
 .metrics span, .metrics small { color: var(--muted); font-size: .8rem; }
 .metrics strong { display: block; font-weight: 650; letter-spacing: -.04em; font-size: clamp(1.38rem, 4vw, 2.35rem); line-height: 1.2; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.freshness { display: flex; flex-wrap: wrap; gap: .25rem 1.2rem; margin-top: 1rem; color: var(--muted); font-size: .82rem; }
+.freshness time { margin-left: .2rem; font-weight: 650; color: var(--ink); }
 .method { margin: 1.1rem 0; color: var(--muted); font-size: .9rem; }
 .method summary { cursor: pointer; color: var(--accent); }
 .method p { max-width: 50rem; }

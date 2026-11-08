@@ -55,10 +55,14 @@
           <div><span>Downstream bonus</span><strong id="bonus"></strong><small id="increase"></small></div>
         </div>
       </section>
+      <div id="freshness" class="freshness" aria-label="Citation data freshness" hidden>
+        <span>Data snapshot <time id="snapshot-date" title="Archive modification date from the snapshot provider"></time></span>
+        <span>Last checked <time id="checked-date" title="Last successful snapshot check"></time></span>
+      </div>
       <details class="method">
         <summary>How the score works</summary>
         <p>Each direct citation earns one point. A citing paper also passes back the selected fraction of its own effective score. Separate routes add up, and the calculation follows every eligible route to its end.</p>
-        <p>The calculator uses precomputed scores from 1,897,471 INSPIRE-HEP records. The date rule counts a link when the citing paper is clearly dated later. Title search uses the live INSPIRE catalog, so some search results may be newer than the snapshot.</p>
+        <p>The calculator uses precomputed scores from an INSPIRE-HEP snapshot. The date rule counts a link when the citing paper is clearly dated later. Title search uses the live INSPIRE catalog, so some search results may be newer than the snapshot.</p>
       </details>
       <noscript>This calculator requires JavaScript to find papers and load scores.</noscript>
     </main>

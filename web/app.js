@@ -36,6 +36,41 @@ async function json(url) {
   return response.json();
 }
 
+const dateFormat = new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeZone: "UTC" });
+
+function showDate(id, value) {
+  const date = new Date(value || "");
+  if (Number.isFinite(date.valueOf())) {
+    $(id).dateTime = date.toISOString();
+    $(id).textContent = dateFormat.format(date);
+  } else {
+    $(id).textContent = "Unavailable";
+  }
+}
+
+async function showFreshness() {
+  let snapshot;
+  try {
+    snapshot = await json(new URL("./snapshot.json", import.meta.url));
+  } catch {
+    return;
+  }
+  showDate("snapshot-date", snapshot.archive_last_modified);
+  showDate("checked-date", snapshot.checked_at);
+  $("freshness").hidden = false;
+
+  if (!/^[\w.-]+\/[\w.-]+$/.test(snapshot.repository || "")) return;
+  const runsUrl = new URL(`https://api.github.com/repos/${snapshot.repository}/actions/workflows/pages.yml/runs`);
+  runsUrl.search = new URLSearchParams({ branch: "main", event: "schedule", status: "success", per_page: "1" });
+  try {
+    const runs = await json(runsUrl);
+    const lastScheduled = runs.workflow_runs?.[0]?.run_started_at;
+    if (Date.parse(lastScheduled) > Date.parse(snapshot.checked_at)) showDate("checked-date", lastScheduled);
+  } catch {
+    // The published check date stays visible if the public API is unavailable.
+  }
+}
+
 async function bucketData(bucket) {
   const filename = `scores-${String(bucket).padStart(3, "0")}.bin.gz`;
   const response = await fetch(new URL(`./data/${filename}`, import.meta.url));
@@ -186,6 +221,7 @@ document.querySelectorAll("[data-paper]").forEach((button) => {
   });
 });
 document.querySelector(".rates").addEventListener("change", displayScore);
+showFreshness();
 
 const shared = new URLSearchParams(window.location.search).get("paper");
 if (shared && /^\d{1,10}$/.test(shared) && Number(shared) <= 0xffffffff) showPaper(Number(shared));
