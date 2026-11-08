@@ -1,2 +1,25 @@
-# effective-citations
-A calculator for a novel concept of effective citations. When every paper that directly cited your paper getting citations counts.
+# Effective Citations
+
+A browser calculator for physics papers in the INSPIRE-HEP snapshot. Enter a title or an INSPIRE record ID to compare direct citations with effective citations at 0.5% or 1%. The page searches the live INSPIRE catalog and reads precomputed scores in the browser. Every score includes all eligible citation depths.
+
+## Run locally
+
+```sh
+python -m pip install -r requirements.txt
+python effective_citations.py --rates 0.5 1
+cp -R web dist
+python build_browser_data.py inspire_scores.csv.gz dist/data
+python -m http.server 8000 --directory dist
+```
+
+Open `http://localhost:8000`. The first run downloads the graph ZIP from [Netzschleuder](https://networks.skewed.de/net/inspire_hep). Pass `--snapshot PATH` to reuse a local copy or `--lookup` to print selected results from the command line. The score CSV contains all indexed records and both rates.
+
+## GitHub Pages
+
+Choose **Settings → Pages → Source → GitHub Actions**. The Pages workflow builds the static site and runs the scorer in GitHub Actions. It can also be run manually from the Actions tab. GitHub Pages eligibility depends on repository visibility and the account plan.
+
+## Scoring
+
+A direct citation earns one point. If B cites A, A also earns the selected fraction of B's effective score. Separate routes contribute independently, including routes through the same later paper. Each link counts once between a given pair of records. The scorer keeps a link when the citing record is clearly dated later and follows every eligible branch to its end.
+
+The initial run scored 1,897,471 records and 44,407,154 date-ordered links. The source snapshot has SHA-256 `d2f117572e551a8b7f814f08248562f7dc14884c9af2bd21b19622cdd0fdb4eb`. The default download follows the provider's current copy, so later builds may use updated data. Direct counts on this site use the same eligible links as the effective scores.

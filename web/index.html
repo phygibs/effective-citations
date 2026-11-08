@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Find a physics paper and compare its direct citations with credit from every downstream citation path.">
+  <title>Effective Citations</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <div class="layout">
+    <header class="masthead">
+      <a class="brand" href="./"><span class="mark" aria-hidden="true">↳</span> Citation Lab</a>
+      <a class="source-tag" href="https://networks.skewed.de/net/inspire_hep">INSPIRE-HEP SNAPSHOT ↗</a>
+    </header>
+    <main>
+      <div class="intro">
+        <p class="eyebrow">A PHYSICS CITATION EXPERIMENT</p>
+        <h1>Effective<br class="hero-break"> citations<span>.</span></h1>
+        <p class="lede">See how a paper’s score changes when it gets credit for the work that cites it, and the work that follows.</p>
+      </div>
+      <section class="search-panel" aria-labelledby="search-heading">
+        <h2 id="search-heading">Find a paper</h2>
+        <form id="search-form" role="search">
+          <label class="sr-only" for="query">Paper title or INSPIRE ID</label>
+          <input id="query" type="search" required maxlength="300" placeholder="Enter a title or INSPIRE ID" autocomplete="off">
+          <button type="submit">Search <span aria-hidden="true">↗</span></button>
+        </form>
+        <div class="examples" aria-label="Example papers">
+          <span>Try</span>
+          <button type="button" data-paper="1492249">Lattice QCD</button>
+          <button type="button" data-paper="4180">Einstein</button>
+          <button type="button" data-paper="451647">Maldacena</button>
+        </div>
+        <p id="status" class="status" role="status" hidden></p>
+        <ul id="matches" class="matches" aria-label="Matching papers" hidden></ul>
+      </section>
+      <section id="result" class="result" aria-labelledby="paper-title" hidden>
+        <div class="paper-heading">
+          <div>
+            <p class="eyebrow" id="paper-label">PAPER SCORE</p>
+            <h2 id="paper-title"></h2>
+          </div>
+          <a id="paper-link" target="_blank" rel="noopener">INSPIRE record ↗</a>
+        </div>
+        <fieldset class="rates">
+          <legend>Pass-back rate</legend>
+          <label><input type="radio" name="rate" value="0.5" checked><span>0.5%</span></label>
+          <label><input type="radio" name="rate" value="1"><span>1%</span></label>
+        </fieldset>
+        <div id="metrics" class="metrics" aria-live="polite" aria-atomic="true">
+          <div><span>Direct citations</span><strong id="direct"></strong></div>
+          <div class="highlight"><span>Effective citations</span><strong id="effective"></strong></div>
+          <div><span>Downstream bonus</span><strong id="bonus"></strong><small id="increase"></small></div>
+        </div>
+      </section>
+      <details class="method">
+        <summary>How the score works</summary>
+        <p>Each direct citation earns one point. A citing paper also passes back the selected fraction of its own effective score. Separate routes add up, and the calculation follows every eligible route to its end.</p>
+        <p>The calculator uses precomputed scores from 1,897,471 INSPIRE-HEP records. The date rule counts a link when the citing paper is clearly dated later. Title search uses the live INSPIRE catalog, so some search results may be newer than the snapshot.</p>
+      </details>
+      <noscript>This calculator requires JavaScript to find papers and load scores.</noscript>
+    </main>
+    <footer><span>CITATION LAB</span><a href="https://github.com/phygibs/effective-citations">GitHub source ↗</a></footer>
+  </div>
+</body>
+</html>
