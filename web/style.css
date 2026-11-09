@@ -4,8 +4,8 @@
   --ink: #302225;
   --muted: #645157;
   --line: #dbc9c7;
-  --accent: #8d2d37;
-  --tint: #f2e0df;
+  --accent: #74232d;
+  --tint: #eed9dc;
   --mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
   font: 16px/1.5 system-ui, -apple-system, sans-serif;
 }
@@ -31,7 +31,7 @@ h1 span { color: var(--accent); }
 form { display: flex; gap: .55rem; }
 input[type="search"] { min-width: 0; flex: 1; border: 1px solid #ad9295; border-radius: .35rem; padding: .7rem .8rem; background: white; color: var(--ink); }
 form button { border: 1px solid var(--accent); border-radius: .35rem; background: var(--accent); color: white; padding: .65rem 1rem; font-weight: 700; }
-form button:hover { background: #6e222b; }
+form button:hover { background: #5b1923; }
 .examples { display: flex; gap: .45rem; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: .82rem; margin-top: .75rem; }
 .examples button { max-width: 100%; padding: .17rem .52rem; border: 1px solid var(--line); border-radius: .25rem; color: var(--accent); background: var(--paper); text-align: left; }
 .examples button:hover, .matches button:hover { background: var(--tint); }
@@ -62,6 +62,7 @@ form button:hover { background: #6e222b; }
 .method { margin: 1.1rem 0; color: var(--muted); font-size: .9rem; }
 .method summary { cursor: pointer; color: var(--accent); }
 .method p { max-width: 50rem; }
+.score-formula { padding: .65rem .85rem; border-left: 3px solid var(--accent); background: var(--tint); color: var(--ink); }
 footer { border-top: 1px solid var(--line); border-bottom: 0; color: var(--muted); }
 .credit { font-family: system-ui, -apple-system, sans-serif; font-size: .85rem; letter-spacing: normal; }
 footer a { white-space: nowrap; }

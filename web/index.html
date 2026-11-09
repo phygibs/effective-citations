@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Find a physics paper and compare its direct citations with credit from every downstream citation path.">
   <title>Effective Citations</title>
-  <link rel="stylesheet" href="./style.css?v=2">
+  <link rel="stylesheet" href="./style.css?v=3">
   <script type="module" src="./app.js"></script>
 </head>
 <body>
@@ -60,7 +60,10 @@
       </div>
       <details class="method">
         <summary>How the score works</summary>
-        <p>Each direct citation earns one point. A citing paper also passes back the selected fraction of its own effective score. Separate routes add up, and the calculation follows every eligible route to its end.</p>
+        <p>Each direct citation earns one point. Each paper that cites the target paper also passes back the selected fraction of its own effective score. This carries credit back through successive generations of citations.</p>
+        <p class="score-formula"><strong>Effective score</strong> = direct citations + pass-back rate × sum of the effective scores of the papers that cite it.</p>
+        <p>Suppose your paper has 10 direct citations and one of those citing papers has 1,000 direct citations of its own. That branch adds 10 points at 1%, taking your score to 20 before any other indirect credit. At 0.5%, it adds 5 points instead.</p>
+        <p>At 1%, a two-link route contributes 0.01 points and a three-link route contributes 0.0001 points. Every eligible route counts, even when two routes reach the same paper. The downstream bonus is the total of all this indirect credit.</p>
         <p>The calculator uses precomputed scores from an INSPIRE-HEP snapshot. The date rule counts a link when the citing paper is clearly dated later. Title search uses the live INSPIRE catalog, so some search results may be newer than the snapshot.</p>
       </details>
       <noscript>This calculator requires JavaScript to find papers and load scores.</noscript>
