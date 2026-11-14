@@ -28,3 +28,9 @@ GitHub checks the snapshot every Monday at 04:17 UTC. It downloads and scores a 
 A direct citation earns one point. If B cites A, A also earns the selected fraction of B's effective score. Separate routes contribute independently, including routes through the same later paper. Each link counts once between a given pair of records. The scorer keeps a link when the citing record is clearly dated later and follows every eligible branch to its end.
 
 The initial run scored 1,897,471 records and 44,407,154 date-ordered links. The source snapshot has SHA-256 `d2f117572e551a8b7f814f08248562f7dc14884c9af2bd21b19622cdd0fdb4eb`. The default download follows the provider's current copy, so later builds may use updated data. Direct counts on this site use the same eligible links as the effective scores.
+
+## License
+
+This project is distributed under the **Creative Commons Attribution 4.0 International (CC BY 4.0)** license. See [LICENSE](LICENSE) and the [official license terms](https://creativecommons.org/licenses/by/4.0/). If you share or adapt the work, credit **phygibs**, link to the project and license, and indicate changes.
+
+Earlier versions of this repository were published under CC0 1.0. Rights already granted under CC0 are not withdrawn by this change. Third-party data, dependencies, and other material remain subject to their respective terms.
